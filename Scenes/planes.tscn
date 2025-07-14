@@ -1,3 +1,52 @@
-[gd_scene format=3 uid="uid://ddxwhl28eo7i0"]
+[gd_scene load_steps=8 format=3 uid="uid://ddxwhl28eo7i0"]
+
+[ext_resource type="PackedScene" uid="uid://cvfl67fqc85bw" path="res://Blender/cat_0.glb" id="1_ikln6"]
+[ext_resource type="Script" uid="uid://xh1gksfr2li8" path="res://Characters/Cat/cat.gd" id="2_1ddll"]
+[ext_resource type="PackedScene" uid="uid://by358ro5wa8yc" path="res://Items/Trees/tree_1.tscn" id="3_pfm6d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mvyjq"]
+size = Vector3(15, 0.1, 15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikln6"]
+albedo_color = Color(0.366085, 0.43848, 0.184363, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1ddll"]
+material = SubResource("StandardMaterial3D_ikln6")
+size = Vector3(15, 0.1, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ddll"]
+size = Vector3(0.249512, 0.430298, 1.0813)
 
 [node name="Planes" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_mvyjq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_1ddll")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.296416, 0)
+script = ExtResource("2_1ddll")
+
+[node name="Cat" parent="CharacterBody3D" instance=ExtResource("1_ikln6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00262058, 0.354166, 0.18151)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00268555, 0.266785, 0.106323)
+shape = SubResource("BoxShape3D_1ddll")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, -7.71363e-09, 0.9961, 0.0882337, 8.70818e-08, 0.0882337, -0.9961, 0, 1.16617, -1.21258)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.189678, 0.981846, 0, -0.981846, -0.189678, 0, 7.27087, -1.90531)
+light_energy = 3.015
+
+[node name="Tree_1" parent="." instance=ExtResource("3_pfm6d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.749001, 2)
+
+[node name="Tree_2" parent="." instance=ExtResource("3_pfm6d")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2, 0.518204, 4)

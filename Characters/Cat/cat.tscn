@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://63s5ql0ictvs"]
+
+[ext_resource type="PackedScene" uid="uid://k7d6fsyold3f" path="res://Blender/cat_0.blend" id="1_0w75p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i31x8"]
+size = Vector3(0.250791, 0.481936, 1.08356)
+
+[node name="Cat" type="CharacterBody3D"]
+
+[node name="cat_0" parent="." instance=ExtResource("1_0w75p")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000883788, -0.0640881, -0.0748596)
+shape = SubResource("BoxShape3D_i31x8")
